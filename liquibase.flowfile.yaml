@@ -1,0 +1,24 @@
+##########           LIQUIBASE FLOWFILE                ##########
+##########  learn more http://docs.liquibase.com/flow  ##########
+
+
+stages:
+  Default:
+    actions:
+      - type: liquibase
+        command: executeSql
+        cmdArgs: 
+            sqlFile: state.sql
+            url: jdbc:postgresql://localhost:5432/ref
+            username: postgres
+            password: postgres
+      - type: liquibase
+        command: diffChangelog
+        cmdArgs:
+            changelogFile: generated.xml
+            referenceUrl: jdbc:postgresql://localhost:5432/ref
+            referenceUsername: postgres
+            referencePassword: postgres
+            url: jdbc:postgresql://localhost:5432/prod
+            username: postgres
+            password: postgres
