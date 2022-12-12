@@ -21,4 +21,11 @@ stages:
             referencePassword: postgres
             url: jdbc:postgresql://localhost:5432/prod
             username: postgres
+            password: postgres      
+      - type: liquibase
+        command: update
+        cmdArgs:
+            changelogFile: generated.xml
+            url: jdbc:postgresql://localhost:5432/prod
+            username: postgres
             password: postgres
